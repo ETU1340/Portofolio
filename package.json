@@ -1,0 +1,23 @@
+{
+  "name": "portofolio",
+  "version": "1.0.0",
+  "description": "Le projet est une maniére de me donné une visibilité",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ETU1340/Portofolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ETU1340/Portofolio/issues"
+  },
+  "homepage": "https://github.com/ETU1340/Portofolio#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1"
+  }
+}
