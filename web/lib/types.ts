@@ -38,6 +38,26 @@ export interface Message {
   createdAt: string;
 }
 
+export interface Profile {
+  id: string;
+  fullName: string;
+  title: string;
+  bio: string;
+  email: string;
+  phone: string | null;
+  location: string | null;
+  avatarUrl: string | null;
+  cvUrl: string | null;
+  githubUrl: string | null;
+  linkedinUrl: string | null;
+  websiteUrl: string | null;
+  yearsOfExperience: number;
+  projectsDelivered: number;
+  availableForHire: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface User {
   id: string;
   email: string;

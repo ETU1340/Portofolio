@@ -119,6 +119,26 @@ Node.js, TypeScript, Commander.js
     await prisma.project.create({ data: project });
   }
 
+  await prisma.profile.deleteMany();
+  await prisma.profile.create({
+    data: {
+      fullName: 'Alex Carter',
+      title: 'Développeur Web Full-Stack',
+      bio: "Je suis un développeur web full-stack basé à Paris, passionné par la création d'interfaces utilisateur soignées et d'architectures robustes. Mon parcours a commencé il y a 5 ans, et depuis, je n'ai jamais cessé d'apprendre.\n\nJ'aime résoudre des problèmes complexes avec des solutions élégantes. Je privilégie un code propre, maintenable et testé. Mon objectif : livrer des produits qui ne se contentent pas de fonctionner, mais qui procurent une véritable satisfaction d'utilisation.\n\nQuand je ne code pas, vous me trouverez probablement en train de contribuer à des projets open-source, explorer de nouveaux outils, ou déguster un bon café en lisant la doc d'un framework qui vient de sortir.",
+      email: 'alex@carter.dev',
+      phone: '+33 6 12 34 56 78',
+      location: 'Paris, France',
+      avatarUrl: 'https://api.dicebear.com/9.x/notionists/svg?seed=Alex',
+      cvUrl: null,
+      githubUrl: 'https://github.com',
+      linkedinUrl: 'https://linkedin.com',
+      websiteUrl: null,
+      yearsOfExperience: 5,
+      projectsDelivered: 40,
+      availableForHire: true,
+    },
+  });
+
   console.log(`Seed complete. Admin: ${adminEmail}`);
 }
 

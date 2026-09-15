@@ -1,14 +1,25 @@
 import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Providers } from '@/components/Providers';
 import './globals.css';
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains',
+});
+
 export const metadata: Metadata = {
   title: {
-    default: 'Portfolio & Developer Showcase',
-    template: '%s | Portfolio',
+    default: 'Alex Carter — Développeur Web Full-Stack',
+    template: '%s | Alex Carter',
   },
   description:
-    'Vitrine professionnelle — projets, architecture technique, démos live et études de cas.',
+    "Portfolio d'Alex Carter, développeur web full-stack spécialisé en Next.js, React et TypeScript. Création d'applications web modernes, performantes et élégantes.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   ),
@@ -20,8 +31,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#0a0a0f] font-sans text-zinc-100">
+    <html
+      lang="fr"
+      data-scroll-behavior="smooth"
+      className={`dark h-full ${inter.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="min-h-full flex flex-col bg-background font-sans text-foreground antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

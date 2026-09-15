@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
 import { SkillsModule } from './skills/skills.module';
 import { ContactModule } from './contact/contact.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ContactModule } from './contact/contact.module';
     ProjectsModule,
     SkillsModule,
     ContactModule,
+    ProfileModule,
   ],
   providers: [
     {

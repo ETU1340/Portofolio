@@ -1,12 +1,15 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Project, ProjectStatus, ProjectType } from '@/lib/types';
-import { ProjectCard } from './ProjectCard';
 import {
+  Project,
+  ProjectStatus,
+  ProjectType,
   PROJECT_STATUS_LABELS,
   PROJECT_TYPE_LABELS,
 } from '@/lib/types';
+import { ProjectCard } from './ProjectCard';
+import { cn } from '@/lib/utils';
 
 export function ProjectGallery({ projects }: { projects: Project[] }) {
   const [typeFilter, setTypeFilter] = useState<ProjectType | ''>('');
@@ -27,21 +30,30 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
     });
   }, [projects, typeFilter, statusFilter, techFilter]);
 
+  const selectClass = cn(
+    'rounded-lg border border-border bg-card/50 px-3 py-2 font-mono text-xs text-foreground',
+    'focus:border-neon-green/50 focus:outline-none focus:ring-1 focus:ring-neon-green/30',
+  );
+
   return (
-    <section id="projects" className="py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <h2 className="mb-2 font-mono text-sm uppercase tracking-widest text-cyan-400">
-          Galerie
-        </h2>
-        <p className="mb-8 text-3xl font-bold text-zinc-100">
-          Projets & Réalisations
-        </p>
+    <section id="projects" className="relative py-24 px-6">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p className="font-mono text-sm text-neon-green mb-2">
+              <span className="text-muted-foreground">$</span> ls -la projects/
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold">
+              Projets sélectionnés
+            </h2>
+          </div>
+        </div>
 
         <div className="mb-8 flex flex-wrap gap-3">
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value as ProjectType | '')}
-            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-300"
+            className={selectClass}
           >
             <option value="">Tous les types</option>
             {(Object.keys(PROJECT_TYPE_LABELS) as ProjectType[]).map((t) => (
@@ -56,7 +68,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             onChange={(e) =>
               setStatusFilter(e.target.value as ProjectStatus | '')
             }
-            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-300"
+            className={selectClass}
           >
             <option value="">Tous les statuts</option>
             {(Object.keys(PROJECT_STATUS_LABELS) as ProjectStatus[]).map(
@@ -71,7 +83,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
           <select
             value={techFilter}
             onChange={(e) => setTechFilter(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-300"
+            className={selectClass}
           >
             <option value="">Toutes les technologies</option>
             {allTechs.map((tech) => (
@@ -82,14 +94,14 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
           </select>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid md:grid-cols-2 gap-6">
           {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
         {filtered.length === 0 && (
-          <p className="text-center text-zinc-500">
+          <p className="text-center font-mono text-sm text-muted-foreground">
             Aucun projet ne correspond aux filtres.
           </p>
         )}

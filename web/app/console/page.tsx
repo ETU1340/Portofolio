@@ -11,7 +11,7 @@ export default function ConsolePage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         <ApiConsole />
       </main>
       <Footer />

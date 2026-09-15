@@ -49,6 +49,17 @@ export function getSkills() {
   return apiFetch<import('./types').Skill[]>('/api/skills');
 }
 
+export function getProfile() {
+  return apiFetch<import('./types').Profile>('/api/profile');
+}
+
+export function updateProfile(data: import('./types').Profile) {
+  return apiFetch<import('./types').Profile>('/api/profile', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  });
+}
+
 export function sendContact(data: {
   senderName: string;
   senderEmail: string;
