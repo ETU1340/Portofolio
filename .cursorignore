@@ -1,0 +1,21 @@
+# Dépendances
+node_modules/
+**/node_modules/
+
+# Builds & Caches
+api/dist/
+web/.next/
+web/out/
+web/build/
+.cache/
+.turbo/
+*.tsbuildinfo
+
+# Fichiers d'environnement & Sécurité (Strict)
+.env
+.env.*
+!.env.example
+
+# Dépendances
+node_modules/
+**/node_modules/
