@@ -5,6 +5,7 @@ import { Mail, Send, MapPin, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/BrandIcons';
 import { sendContact } from '@/lib/api';
 import type { Profile } from '@/lib/types';
+import { SITE_OWNER } from '@/lib/site';
 
 interface ContactFormProps {
   profile: Profile | null;
@@ -31,15 +32,17 @@ export function ContactForm({ profile }: ContactFormProps) {
   );
   const [error, setError] = useState('');
 
-  const contactEmail = profile?.email ?? 'alex@carter.dev';
-  const contactPhone = profile?.phone ?? '+33 6 12 34 56 78';
-  const contactLocation = profile?.location ?? 'Paris, France';
+  const contactEmail = profile?.email ?? SITE_OWNER.email;
+  const contactPhone = profile?.phone ?? SITE_OWNER.phone;
+  const contactLocation = profile?.location ?? SITE_OWNER.location;
   const githubUrl =
-    profile?.githubUrl ?? process.env.NEXT_PUBLIC_GITHUB_URL ?? 'https://github.com';
+    profile?.githubUrl ??
+    process.env.NEXT_PUBLIC_GITHUB_URL ??
+    SITE_OWNER.githubUrl;
   const linkedinUrl =
     profile?.linkedinUrl ??
     process.env.NEXT_PUBLIC_LINKEDIN_URL ??
-    'https://linkedin.com';
+    SITE_OWNER.linkedinUrl;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Providers } from '@/components/Providers';
+import { SITE_OWNER } from '@/lib/site';
 import './globals.css';
 
 const inter = Inter({
@@ -15,11 +16,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Alex Carter — Développeur Web Full-Stack',
-    template: '%s | Alex Carter',
+    default: SITE_OWNER.seoTitle,
+    template: SITE_OWNER.seoTitleTemplate,
   },
-  description:
-    "Portfolio d'Alex Carter, développeur web full-stack spécialisé en Next.js, React et TypeScript. Création d'applications web modernes, performantes et élégantes.",
+  description: SITE_OWNER.seoDescription,
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   ),

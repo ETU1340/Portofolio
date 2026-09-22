@@ -20,7 +20,7 @@ async function main() {
   const skills = [
     { name: 'Nest.js', category: SkillCategory.BACKEND, order: 0 },
     { name: 'Node.js', category: SkillCategory.BACKEND, order: 1 },
-    { name: 'TypeScript', category: SkillCategory.BACKEND, order: 2 },
+    { name: 'PHP', category: SkillCategory.BACKEND, order: 3 },
     { name: 'Next.js', category: SkillCategory.FRONTEND, order: 0 },
     { name: 'React', category: SkillCategory.FRONTEND, order: 1 },
     { name: 'Tailwind CSS', category: SkillCategory.FRONTEND, order: 2 },
@@ -122,13 +122,13 @@ Node.js, TypeScript, Commander.js
   await prisma.profile.deleteMany();
   await prisma.profile.create({
     data: {
-      fullName: 'Alex Carter',
-      title: 'Développeur Web Full-Stack',
-      bio: "Je suis un développeur web full-stack basé à Paris, passionné par la création d'interfaces utilisateur soignées et d'architectures robustes. Mon parcours a commencé il y a 5 ans, et depuis, je n'ai jamais cessé d'apprendre.\n\nJ'aime résoudre des problèmes complexes avec des solutions élégantes. Je privilégie un code propre, maintenable et testé. Mon objectif : livrer des produits qui ne se contentent pas de fonctionner, mais qui procurent une véritable satisfaction d'utilisation.\n\nQuand je ne code pas, vous me trouverez probablement en train de contribuer à des projets open-source, explorer de nouveaux outils, ou déguster un bon café en lisant la doc d'un framework qui vient de sortir.",
-      email: 'alex@carter.dev',
-      phone: '+33 6 12 34 56 78',
-      location: 'Paris, France',
-      avatarUrl: 'https://api.dicebear.com/9.x/notionists/svg?seed=Alex',
+      fullName: 'VALIMBAVAKA Nomena Finoana',
+      title: 'Expert Next.js & React & PHP',
+      bio: "Je suis un développeur web full-stack basé à Madagascar, passionné par la création d'interfaces utilisateur soignées et d'architectures robustes. Mon parcours a commencé il y a 5 ans, et depuis, je n'ai jamais cessé d'apprendre.\n\nJ'aime résoudre des problèmes complexes avec des solutions élégantes. Je privilégie un code propre, maintenable et testé. Mon objectif : livrer des produits qui ne se contentent pas de fonctionner, mais qui procurent une véritable satisfaction d'utilisation.\n\nQuand je ne code pas, vous me trouverez probablement en train de contribuer à des projets open-source, explorer de nouveaux outils, ou déguster un bon café en lisant la doc d'un framework qui vient de sortir.",
+      email: 'nousmfinoana@gmail.com',
+      phone: '+261 0385053138',
+      location: 'Madagascar',
+      avatarUrl: 'https://api.dicebear.com/9.x/notionists/svg?seed=Noums',
       cvUrl: null,
       githubUrl: 'https://github.com',
       linkedinUrl: 'https://linkedin.com',

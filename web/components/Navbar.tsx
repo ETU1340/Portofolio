@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SITE_OWNER } from '@/lib/site';
 
 const links = [
   { href: '/#home', id: 'home', label: '~ home' },
@@ -53,7 +54,7 @@ export function Navbar() {
           className="flex items-center gap-2 font-mono text-sm font-bold text-foreground"
         >
           <Terminal className="h-5 w-5 text-neon-green" />
-          <span className="text-neon-green">noum's</span>
+          <span className="text-neon-green">{SITE_OWNER.brandHandle}</span>
           <span className="text-muted-foreground">.dev</span>
         </Link>
 

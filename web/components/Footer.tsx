@@ -1,4 +1,5 @@
 import { Terminal, Heart } from 'lucide-react';
+import { SITE_OWNER } from '@/lib/site';
 
 export function Footer() {
   return (
@@ -6,7 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
           <Terminal className="h-4 w-4 text-neon-green" />
-          <span className="text-neon-green">alex</span>
+          <span className="text-neon-green">{SITE_OWNER.brandHandle}</span>
           <span>.dev</span>
         </div>
 
@@ -15,7 +16,8 @@ export function Footer() {
         </p>
 
         <p className="font-mono text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Alex Carter. Tous droits réservés.
+          © {new Date().getFullYear()} {SITE_OWNER.fullName}. Tous droits
+          réservés.
         </p>
       </div>
     </footer>

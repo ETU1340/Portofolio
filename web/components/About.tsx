@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Coffee, Heart, Zap, MapPin } from 'lucide-react';
 import type { Profile } from '@/lib/types';
+import { SITE_OWNER } from '@/lib/site';
 
 interface AboutProps {
   profile: Profile | null;
@@ -13,20 +14,29 @@ interface CodeLine {
 }
 
 function buildCodeLines(profile: Profile | null): CodeLine[] {
-  const name = profile?.fullName ?? 'Alex Carter';
-  const role = profile?.title ?? 'Full-Stack Developer';
-  const loc = profile?.location ?? 'Paris, France';
-  const exp = profile?.yearsOfExperience ?? 5;
+  const name = profile?.fullName ?? SITE_OWNER.fullName;
+  const role = profile?.title ?? SITE_OWNER.title;
+  const loc = profile?.location ?? SITE_OWNER.location;
+  const exp = profile?.yearsOfExperience ?? SITE_OWNER.yearsOfExperience;
 
   return [
     { text: 'const developer = {', indent: 0 },
     { text: `  name: '${name}',`, indent: 1, highlight: 'key' },
+    { text: `  alias: "${SITE_OWNER.pseudo}",`, indent: 1, highlight: 'key' },
     { text: `  role: '${role}',`, indent: 1, highlight: 'key' },
     { text: `  location: '${loc}',`, indent: 1, highlight: 'key' },
     { text: `  experience: ${exp},`, indent: 1, highlight: 'num' },
     { text: '  stack: [', indent: 1 },
-    { text: "    'Next.js', 'React', 'TypeScript',", indent: 2, highlight: 'str' },
-    { text: "    'Node.js', 'Tailwind', 'PostgreSQL',", indent: 2, highlight: 'str' },
+    {
+      text: `    ${SITE_OWNER.stack.primary.map((item) => `'${item}'`).join(', ')},`,
+      indent: 2,
+      highlight: 'str',
+    },
+    {
+      text: `    ${SITE_OWNER.stack.secondary.map((item) => `'${item}'`).join(', ')},`,
+      indent: 2,
+      highlight: 'str',
+    },
     { text: '  ],', indent: 1 },
     { text: '  passionate: true,', indent: 1, highlight: 'bool' },
     { text: `  available: ${profile?.availableForHire ?? true},`, indent: 1, highlight: 'bool' },
@@ -46,13 +56,25 @@ export function About({ profile }: AboutProps) {
   const bio = profile?.bio ?? '';
   const bioLines = bio.split('\n').filter(Boolean);
   const avatarUrl = profile?.avatarUrl;
-  const fullName = profile?.fullName ?? 'Alex Carter';
+  const fullName = profile?.fullName ?? SITE_OWNER.fullName;
 
   const stats = [
-    { icon: Zap, label: "Années d'expérience", value: `${profile?.yearsOfExperience ?? 5}+` },
-    { icon: Coffee, label: 'Projets livrés', value: `${profile?.projectsDelivered ?? 40}+` },
+    {
+      icon: Zap,
+      label: "Années d'expérience",
+      value: `${profile?.yearsOfExperience ?? SITE_OWNER.yearsOfExperience}+`,
+    },
+    {
+      icon: Coffee,
+      label: 'Projets livrés',
+      value: `${profile?.projectsDelivered ?? SITE_OWNER.projectsDelivered}+`,
+    },
     { icon: Heart, label: 'Clients satisfaits', value: '100%' },
-    { icon: MapPin, label: 'Basé à', value: profile?.location?.split(',')[0] ?? 'Paris' },
+    {
+      icon: MapPin,
+      label: 'Basé à',
+      value: profile?.location?.split(',')[0] ?? SITE_OWNER.location,
+    },
   ];
 
   return (
@@ -86,9 +108,9 @@ export function About({ profile }: AboutProps) {
               ) : (
                 <>
                   <p>
-                    Je suis un développeur web full-stack basé à Paris, passionné par
-                    la création d&apos;interfaces utilisateur soignées et d&apos;architectures
-                    robustes.
+                    Je suis un développeur web full-stack basé à {SITE_OWNER.location},
+                    passionné par la création d&apos;interfaces utilisateur soignées
+                    et d&apos;architectures robustes.
                   </p>
                   <p>
                     J&apos;aime résoudre des problèmes complexes avec des solutions

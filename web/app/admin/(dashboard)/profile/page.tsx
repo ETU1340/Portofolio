@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { SITE_OWNER } from '@/lib/site';
 
 interface ProfileForm {
   fullName: string;
@@ -221,7 +222,7 @@ export default function AdminProfilePage() {
             value={form.location}
             onChange={update('location')}
             className={inputClass}
-            placeholder="Paris, France"
+            placeholder={SITE_OWNER.location}
           />
         </div>
 

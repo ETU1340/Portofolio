@@ -5,31 +5,35 @@ import Image from 'next/image';
 import { ArrowDown, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/BrandIcons';
 import type { Profile } from '@/lib/types';
+import { SITE_OWNER } from '@/lib/site';
 
 interface HeroProps {
   profile: Profile | null;
 }
 
 export function Hero({ profile }: HeroProps) {
-  const fullName = profile?.fullName ?? 'Alex Carter';
-  const nameParts = fullName.split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' ');
+  const fullName = profile?.fullName ?? SITE_OWNER.fullName;
+  const isDefaultOwner = fullName === SITE_OWNER.fullName;
+  const givenNames = isDefaultOwner
+    ? SITE_OWNER.givenNames
+    : (fullName.split(' ')[0] ?? fullName);
+  const familyName = isDefaultOwner
+    ? SITE_OWNER.familyName
+    : (fullName.split(' ').slice(1).join(' ') || fullName);
 
-  const roles = [
-    profile?.title ?? 'Développeur Web Full-Stack',
-    'Expert Next.js & React',
-    'Passionné de TypeScript',
-    "Créateur d'expériences web",
-  ];
+  const roles = [profile?.title ?? SITE_OWNER.title, ...SITE_OWNER.roles].filter(
+    (role, index, list) => list.indexOf(role) === index,
+  );
 
   const cvUrl = profile?.cvUrl ?? process.env.NEXT_PUBLIC_CV_URL;
   const githubUrl =
-    profile?.githubUrl ?? process.env.NEXT_PUBLIC_GITHUB_URL ?? 'https://github.com';
+    profile?.githubUrl ??
+    process.env.NEXT_PUBLIC_GITHUB_URL ??
+    SITE_OWNER.githubUrl;
   const linkedinUrl =
     profile?.linkedinUrl ??
     process.env.NEXT_PUBLIC_LINKEDIN_URL ??
-    'https://linkedin.com';
+    SITE_OWNER.linkedinUrl;
   const avatarUrl = profile?.avatarUrl;
   const available = profile?.availableForHire ?? true;
 
@@ -91,13 +95,16 @@ export function Hero({ profile }: HeroProps) {
           </div>
         )}
 
-        <p className="font-mono text-sm text-muted-foreground mb-4 animate-fade-in-up">
+        <p className="font-mono text-sm text-muted-foreground mb-2 animate-fade-in-up">
           <span className="text-neon-green">$</span> whoami
         </p>
+        <p className="font-mono text-sm text-neon-green mb-4 animate-fade-in-up">
+          {SITE_OWNER.pseudo}
+        </p>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4 animate-fade-in-up">
-          {firstName}{' '}
-          <span className="gradient-text">{lastName}</span>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 animate-fade-in-up">
+          {givenNames}{' '}
+          <span className="gradient-text">{familyName}</span>
         </h1>
 
         <div className="h-10 mb-8 flex items-center justify-center animate-fade-in-up">
@@ -108,10 +115,7 @@ export function Hero({ profile }: HeroProps) {
         </div>
 
         <p className="max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg leading-relaxed mb-10 animate-fade-in-up">
-          Je conçois et construis des applications web modernes, performantes
-          et accessibles. Spécialisé dans l&apos;écosystème React/Next.js avec une
-          attention particulière portée aux détails et à l&apos;expérience
-          utilisateur.
+          {SITE_OWNER.tagline}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in-up">
