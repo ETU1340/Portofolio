@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProjectType {
+  PERSONAL
+  PROFESSIONAL
+  OPEN_SOURCE
+}
+
+enum ProjectStatus {
+  LIVE
+  IN_PROGRESS
+  ARCHIVED
+}
+
+enum SkillCategory {
+  BACKEND
+  FRONTEND
+  DATABASE
+  DEVOPS
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  createdAt     DateTime       @default(now())
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Project {
+  id             String        @id @default(uuid())
+  title          String
+  slug           String        @unique
+  summary        String
+  description    String        @db.Text
+  projectType    ProjectType   @default(PERSONAL)
+  status         ProjectStatus @default(LIVE)
+  domainName     String?
+  githubUrl      String?
+  isGithubPublic Boolean       @default(true)
+  technologies   String[]
+  highlights     String[]
+  isPublished    Boolean       @default(true)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model Skill {
+  id       String        @id @default(uuid())
+  name     String
+  category SkillCategory
+  order    Int           @default(0)
+}
+
+model Profile {
+  id                String   @id @default(uuid())
+  fullName          String
+  title             String
+  bio               String   @db.Text
+  email             String
+  phone             String?
+  location          String?
+  avatarUrl         String?
+  cvUrl             String?
+  githubUrl         String?
+  linkedinUrl       String?
+  websiteUrl        String?
+  yearsOfExperience Int      @default(0)
+  projectsDelivered Int      @default(0)
+  availableForHire  Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  senderName  String
+  senderEmail String
+  subject     String
+  content     String   @db.Text
+  isRead      Boolean  @default(false)
+  isArchived  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
