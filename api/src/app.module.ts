@@ -8,6 +8,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { SkillsModule } from './skills/skills.module';
 import { ContactModule } from './contact/contact.module';
 import { ProfileModule } from './profile/profile.module';
+import { UploadsModule } from './uploads/uploads.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ProfileModule } from './profile/profile.module';
     SkillsModule,
     ContactModule,
     ProfileModule,
+    UploadsModule,
   ],
   providers: [
     {

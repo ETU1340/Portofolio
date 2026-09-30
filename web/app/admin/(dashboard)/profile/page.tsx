@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { SITE_OWNER } from '@/lib/site';
+import { AvatarUploader } from '@/components/admin/AvatarUploader';
 
 interface ProfileForm {
   fullName: string;
@@ -85,10 +85,10 @@ export default function AdminProfilePage() {
       yearsOfExperience: form.yearsOfExperience,
       projectsDelivered: form.projectsDelivered,
       availableForHire: form.availableForHire,
+      avatarUrl: form.avatarUrl || null,
     };
     if (form.phone) body.phone = form.phone;
     if (form.location) body.location = form.location;
-    if (form.avatarUrl) body.avatarUrl = form.avatarUrl;
     if (form.cvUrl) body.cvUrl = form.cvUrl;
     if (form.githubUrl) body.githubUrl = form.githubUrl;
     if (form.linkedinUrl) body.linkedinUrl = form.linkedinUrl;
@@ -144,19 +144,10 @@ export default function AdminProfilePage() {
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {form.avatarUrl && (
-          <div className="flex items-center gap-4">
-            <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-cyan-500/50">
-              <Image
-                src={form.avatarUrl}
-                alt="Avatar"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <p className="text-sm text-zinc-400">Aperçu de la photo de profil</p>
-          </div>
-        )}
+        <AvatarUploader
+          value={form.avatarUrl}
+          onChange={(url) => setForm((f) => ({ ...f, avatarUrl: url }))}
+        />
 
         <div className="grid gap-4 md:grid-cols-2">
           <div>
@@ -228,7 +219,7 @@ export default function AdminProfilePage() {
 
         <div>
           <label className="mb-1 block text-sm text-zinc-400">
-            URL Photo de profil
+            URL Photo de profil (optionnel, lien externe)
           </label>
           <input
             type="url"
