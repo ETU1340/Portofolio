@@ -24,6 +24,10 @@ npm-debug.log*
 .vscode/
 *.swp
 *.swo
+.cursorrules
+.cursorignore
+web/AGENTS.md
+web/CLAUDE.md
 
 # OS
 .DS_Store
