@@ -40,10 +40,10 @@ export class UpdateProfileDto {
   @IsString()
   location?: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ nullable: true })
   @IsOptional()
   @IsUrl()
-  avatarUrl?: string;
+  avatarUrl?: string | null;
 
   @ApiPropertyOptional()
   @IsOptional()
