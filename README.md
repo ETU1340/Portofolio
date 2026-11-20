@@ -49,8 +49,8 @@ npx prisma db seed
 npm run start:dev
 ```
 
-API : http://localhost:4000  
-Swagger : http://localhost:4000/api/docs
+API : https://portofolio-t374.vercel.app 
+Swagger : https://portofolio-t374.vercel.app /api/docs
 
 ### 3. Web
 
