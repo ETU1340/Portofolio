@@ -2,6 +2,16 @@
 
 Plateforme vitrine publique + dashboard d'administration + API REST.
 
+## En ligne
+
+| Surface | URL |
+|---------|-----|
+| Vitrine | https://portofolio-mu-seven-39.vercel.app/ |
+| Admin | https://portofolio-mu-seven-39.vercel.app/admin/login |
+| Console API | https://portofolio-mu-seven-39.vercel.app/console |
+| API | https://portofolio-t374.vercel.app |
+| Swagger | https://portofolio-t374.vercel.app/api/docs |
+
 ## Stack
 
 | Composant | Technologie |
@@ -17,22 +27,21 @@ Portofolio/
   api/                 # Nest.js + Prisma
   web/                 # Next.js (vitrine + /admin)
   docker-compose.yml   # PostgreSQL 16
-  .env.example
 ```
 
-## Démarrage rapide
+## Démarrage local
+
+Les fichiers d'environnement restent sur la machine et ne sont pas versionnés.
 
 ### 1. PostgreSQL
 
 ```bash
-cp .env.example .env
 docker compose up -d
 ```
 
 ### 2. API
 
 ```bash
-cp .env.example api/.env   # ou éditer api/.env
 cd api
 npm install
 npx prisma migrate dev
@@ -43,12 +52,9 @@ npm run start:dev
 API : http://localhost:4000  
 Swagger : http://localhost:4000/api/docs
 
-**Compte admin (seed)** : `admin@portfolio.local` / `Admin123!`
-
 ### 3. Web
 
 ```bash
-cp .env.example web/.env.local   # ou éditer web/.env.local
 cd web
 npm install
 npm run dev
@@ -82,6 +88,12 @@ Console API : http://localhost:3000/console
 - `POST /api/contact` + gestion messages admin
 - `POST /api/auth/login|refresh|logout`, `GET /api/auth/me`
 
-## Variables d'environnement
+## Domaines
 
-Voir [`.env.example`](.env.example) pour la liste complète.
+Variables utilisées pour les URL publiques, sans valeur secrète :
+
+| Variable | Rôle | Valeur publique |
+|----------|------|-----------------|
+| `NEXT_PUBLIC_SITE_URL` | URL de la vitrine | `https://portofolio-mu-seven-39.vercel.app` |
+| `API_INTERNAL_URL` | URL de l'API appelée par le front | `https://portofolio-t374.vercel.app` |
+| `CORS_ORIGIN` | Origine autorisée côté API | `https://portofolio-mu-seven-39.vercel.app` |
